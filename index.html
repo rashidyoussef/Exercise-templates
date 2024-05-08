@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Tarjetas de Ejercicio</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="cardContainer" class="card-container">
+        <!-- Las tarjetas se agregarán aquí dinámicamente -->
+    </div>
+
+    <div class="button-container">
+        <button id="pushDayButton">Día de push</button>
+        <button id="pullDayButton">Día de PULL</button>
+        <button id="legDayButton">Día de pierna</button>
+        <button id="resetAllButton">Resetear todo</button>
+    </div>
+
+    <button id="addExerciseButton">Añadir Ejercicio Personalizado</button> <!-- Botón para añadir un ejercicio personalizado -->
+
+    <div id="exerciseDialog" class="dialog">
+        <div class="dialog-content">
+            <span class="close">&times;</span>
+            <h2>Añadir Ejercicio</h2>
+            <form id="exerciseForm">
+                <label for="exerciseName">Nombre del ejercicio:</label><br>
+                <input type="text" id="exerciseName" name="exerciseName"><br>
+                <label for="exerciseSets">Número de series:</label><br>
+                <input type="number" id="exerciseSets" name="exerciseSets"><br><br>
+                <input type="submit" value="Agregar">
+            </form>
+        </div>
+    </div>
+
+   <template id="card-template">
+    <div class="card">
+        <h2></h2>
+        <input type="range" class="exercise-range" min="0" max="4" value="0">
+        <div class="range-value">Set 0 de 4</div>
+        <div class="progress-value" data-progress="0%"></div>
+        <div class="range-percentage">0%</div>
+        <button class="increase-button">Incrementar Valor</button>
+        <button class="reset-button">Resetear progreso</button>
+    </div>
+</template>
+
+    <script src="script.js"></script>
+</body>
+</html>
