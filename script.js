@@ -17,9 +17,9 @@ function createDefaultButtons() {
 // Función para crear el botón de Push Day
 function createPushDayButton() {
     var cardsData = [
-        { name: 'Push Ups', sets: 4 },
+        { name: 'Push Ups (15 reps)', sets: 8 },
         { name: 'Triceps', sets: 4 },
-        { name: 'Handstand hold', sets: 4 }
+        { name: 'Handstand hold', sets: 3 }
     ];
     createCustomButton('Entrenamiento de empuje', cardsData);
 }
@@ -27,21 +27,21 @@ function createPushDayButton() {
 // Función para crear el botón de Pull Day
 function createPullDayButton() {
     var cardsData = [
-        { name: 'Pullups', sets: 4 },
-        { name: 'Ice cream makers', sets: 4 },
-        { name: 'Abs', sets: 4 }
+        { name: 'Pull ups', sets: 8 },
+        { name: 'Chin ups', sets: 3 },
+        { name: 'Abs', sets: 3 }
     ];
-    createCustomButton('Entrenamiento de jalar (?) acaray', cardsData);
+    createCustomButton('Entrenamiento de jale (?) acaray', cardsData);
 }
 
 // Función para crear el botón de Leg Day
 function createLegDayButton() {
     var cardsData = [
-        { name: 'Squats', sets: 4 },
-        { name: 'Sumo Squat', sets: 4 },
-        { name: 'Chocolate', sets: 4 }
+        { name: 'Squats (25 reps)', sets: 4 },
+        { name: 'Sumo Squat (25 reps)', sets: 4 },
+        { name: 'Chocolate', sets: 1 }
     ];
-    createCustomButton('Día de pierna calisténico', cardsData);
+    createCustomButton('Día de pierna', cardsData);
 }
 
 // Función para crear un botón personalizado con datos específicos
