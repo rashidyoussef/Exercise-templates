@@ -12,39 +12,62 @@
     </div>
 
     <div class="button-container">
-        <button id="pushDayButton">Día de push</button>
-        <button id="pullDayButton">Día de PULL</button>
-        <button id="legDayButton">Día de pierna</button>
-        <button id="resetAllButton">Resetear todo</button>
+        <button id="pushDayButton">Push day template</button>
+        <button id="pullDayButton">Pull day template</button>
+        <button id="legDayButton">Leg day template</button>
+        <button id="resetAllButton">Delete everything</button>
+        <button id="saveButton">Save template</button>
     </div>
 
-    <button id="addExerciseButton">Añadir Ejercicio Personalizado</button> <!-- Botón para añadir un ejercicio personalizado -->
+    <button id="addExerciseButton">Add custom exercise</button> <!-- Botón para añadir un ejercicio personalizado -->
 
     <div id="exerciseDialog" class="dialog">
         <div class="dialog-content">
             <span class="close">&times;</span>
             <h2>Añadir Ejercicio</h2>
             <form id="exerciseForm">
-                <label for="exerciseName">Nombre del ejercicio:</label><br>
+                <label for="exerciseName">Name of the exercise:</label><br>
                 <input type="text" id="exerciseName" name="exerciseName"><br>
-                <label for="exerciseSets">Número de series:</label><br>
+                <label for="exerciseSets">Number of sets:</label><br>
                 <input type="number" id="exerciseSets" name="exerciseSets"><br><br>
                 <input type="submit" value="Agregar">
             </form>
         </div>
     </div>
 
-   <template id="card-template">
-    <div class="card">
-        <h2></h2>
-        <input type="range" class="exercise-range" min="0" max="4" value="0">
-        <div class="range-value">Set 0 de 4</div>
-        <div class="progress-value" data-progress="0%"></div>
-        <div class="range-percentage">0%</div>
-        <button class="increase-button">Incrementar Valor</button>
-        <button class="reset-button">Resetear progreso</button>
-    </div>
-</template>
+   <!-- Contenedor para los botones personalizados -->
+   <div id="customTemplatesContainer">
+    <!-- Tabla para mostrar los botones personalizados -->
+    <table id="customTemplatesTable">
+        <thead>
+            <tr>
+                <th>Nombre del Botón</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Aquí se agregarán las filas dinámicamente -->
+        </tbody>
+    </table>
+</div>
+<!-- Botón para limpiar el caché de botones personalizados -->
+<button id="clearCacheButton">Limpiar caché de botones personalizados</button>
+
+    <template id="card-template">
+        <div class="card">
+            <h2></h2>
+            <input type="range" class="exercise-range" min="0" max="4" value="0">
+            <div class="range-value">Set 0 de 4</div>
+            <div class="progress-value" data-progress="0%"></div>
+            <div class="range-percentage">0%</div>
+            <button class="increase-button">+1 set</button>
+            <button class="reset-button"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M440-122q-121-15-200.5-105.5T160-440q0-66 26-126.5T260-672l57 57q-38 34-57.5 79T240-440q0 88 56 155.5T440-202v80Zm80 0v-80q87-16 143.5-83T720-440q0-100-70-170t-170-70h-3l44 44-56 56-140-140 140-140 56 56-44 44h3q134 0 227 93t93 227q0 121-79.5 211.5T520-122Z"/></svg></button>
+            <button class="delete-button"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button> <!-- Nuevo botón de eliminación -->
+        </div>
+    </template>
+
+   
+
 
     <script src="script.js"></script>
 </body>

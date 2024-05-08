@@ -5,7 +5,7 @@
     justify-content: center; /* Centra las tarjetas horizontalmente */
     gap: 20px; /* Espacio entre las tarjetas */
     margin-top: 20px; /* Espacio superior */
-    max-width: 1000px; /* Ancho máximo del contenedor de tarjetas */
+    max-width: 80vw; /* Ancho máximo del contenedor de tarjetas */
     width: 100%; /* Ajusta el contenedor al ancho máximo */
 }
 
@@ -17,6 +17,7 @@
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative; /* Agregar posición relativa para el contenedor */
+    height:150px
 }
 
 /* Estilos para el diálogo modal */
@@ -127,10 +128,31 @@ body {
     align-self: center; /* Centra el botón horizontalmente */
 }
 
+/* Estilos para el botón de eliminar */
+.delete-button,.increase-button,.reset-button {
+    display:flex;
+    background: none;
+    border: none;
+    cursor: pointer;
+    fill: black;
+    color:black;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+}
+
+.delete-button svg,.increase-button svg,.reset-button svg {
+    width: 34px; /* Ajusta el ancho según tus necesidades */
+    height: 26px; /* Ajusta la altura según tus necesidades */
+    fill: black;
+    color:black;
+}
+
+
 /* Estilos para cada tarjeta de ejercicio */
 .card {
     width: 200px; /* Ancho de cada tarjeta */
-    padding: 20px;
+    padding: 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -154,9 +176,189 @@ input[type="range"]::-webkit-slider-thumb {
     height: 0; /* Establecer la altura a 0 para ocultar */
 }
 
-/* Ajuste para ocultar el punto blanco cuando el contenido esté vacío */
-input[type="range"]:empty::before {
-    content: ''; /* No generar ningún contenido cuando esté vacío */
+
+/* Estilos generales para dispositivos móviles */
+@media only screen and (max-width: 600px) {
+    /* Estilos para el contenedor de tarjetas */
+    .card-container {
+        justify-content: flex-start; /* Alinear las tarjetas a la izquierda */
+        margin-top: 10px; /* Reducir el espacio superior */
+    }
+
+    /* Estilos para cada tarjeta de ejercicio */
+    .card {
+        width: calc(100% - 40px); /* Ancho al 100% del contenedor con 40px de margen */
+    }
+
+    /* Estilos para el diálogo modal */
+    .dialog-content {
+        width: 80%; /* Ancho del diálogo modal */
+    }
+
+    /* Estilos para el botón de añadir ejercicio */
+    #addExerciseButton {
+        width: calc(100% - 40px); /* Ancho al 100% del contenedor con 40px de margen */
+    }
+
+
 }
 
+/* Estilos para los botones dentro de las tarjetas */
+.increase-button {
+    position: absolute;
+    bottom: 10%;
+    right: 40%;
+    border: 2px solid black;
+    border-radius: 20px;
+}
 
+.delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.reset-button {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+}
+
+.decrease-button {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Estilos adicionales */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra todo verticalmente */
+    gap: 20px; /* Espacio entre elementos */
+    padding-bottom: 20px; /* Espacio inferior */
+    background-color: #f0f0f0; /* Color de fondo del body */
+    height:100vh;
+}
+
+h2 {
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+/* Estilos para los elementos dentro de las tarjetas */
+.range-value {
+    position: absolute;
+    top: 31%; /* Posición arriba de la barra */
+    left: 0; /* Ajustar a la izquierda */
+    right: 0; /* Ajustar a la derecha */
+    margin: auto; /* Centrar horizontalmente */
+    text-align: center; /* Centrar horizontalmente */
+}
+
+.button-container{
+    display:flex;
+    flex-wrap: wrap;
+}
+#pushDayButton,#pullDayButton,#legDayButton,#resetAllButton {
+    width:150px;
+    height:40px;
+    border-radius: 25px;
+}
+
+#addExerciseButton {
+    width:200px;
+    height:50px;
+    border-radius: 25px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.dialog {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 40%; /* Ancho del diálogo */
+    max-width: 400px; /* Ancho máximo */
+    padding: 20px;
+    border: 2px solid #333; /* Borde notorio */
+    background-color: #f2f2f2; /* Fondo gris */
+    height:40%;
+    line-height: 1.5rem;
+    align-content: center;
+    border-radius: 20px;
+
+}
+
+.dialog-content {
+    margin: auto;
+}
+
+.close {
+    position: absolute;
+    top: 5px;
+    right: 10px;
+    color: #aaa;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
+}
+
+#exerciseForm input {
+    width:100%;
+}
+
+/* Estilos para la tabla de botones personalizados */
+#customTemplatesContainer {
+    margin-top: 20px;
+    border:2px solid black;
+}
+
+#customTemplatesContainer td {
+    border-bottom: 1px solid black;
+    padding:10px;
+    text-align: center;
+}
+
+#customTemplatesContainer td:first-child {
+    border-right: 1px solid black;
+}
+
+.custom-button-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.custom-button-table th,
+.custom-button-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.custom-button-table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.custom-button-table td button {
+    padding: 5px 10px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.custom-button-table td button:hover {
+    background-color: #d32f2f;
+}

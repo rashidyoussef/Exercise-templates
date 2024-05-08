@@ -78,6 +78,11 @@ function createExerciseCard(name, sets) {
         updateLabelText(0, parseInt(sets), card);
         updateProgressValue(0, parseInt(sets), card);
     });
+     // Asignar event listener para el botón de eliminar dentro de la tarjeta
+     var deleteButton = card.querySelector('.delete-button');
+     deleteButton.addEventListener('click', function() {
+         deleteCard(card); // Llamar a la función de eliminación de tarjeta
+     });
 }
 
 // Función para actualizar el porcentaje dentro de la barra
@@ -169,3 +174,160 @@ function createLegDayCards() {
     createExerciseCard('Sumo Squat', 5);
     createExerciseCard('Chocolate', 1);
 }
+
+// Función para eliminar la tarjeta
+function deleteCard(card) {
+    card.remove(); // Eliminar la tarjeta del DOM
+}
+
+// Event listener para el botón de eliminación dentro de cada tarjeta
+var deleteButtons = document.querySelectorAll('.delete-button');
+deleteButtons.forEach(function(button) {
+    button.addEventListener('click', function() {
+        var card = button.parentElement;
+        deleteCard(card); // Llamar a la función de eliminación de tarjeta
+    });
+});
+
+// Función para guardar los botones personalizados en el almacenamiento local
+function saveCustomButtons(customButtons) {
+    // Si customButtons no es un array, conviértelo en un array
+    if (!Array.isArray(customButtons)) {
+        customButtons = [customButtons];
+    }
+    localStorage.setItem('customButtons', JSON.stringify(customButtons));
+}
+
+// Función para cargar los botones personalizados
+function loadCustomButtons() {
+    var customButtons = localStorage.getItem('customButtons');
+    // Si no hay datos o no es un array válido, devuelve un array vacío
+    return customButtons ? JSON.parse(customButtons) : [];
+}
+
+
+// Obtener el botón "Guardar"
+var saveButton = document.getElementById('saveButton');
+
+// Event listener para el botón "Guardar"
+var saveButton = document.getElementById('saveButton');
+saveButton.addEventListener('click', function() {
+    // Obtener los datos de las tarjetas actuales
+    var cardsData = [];
+    var cards = document.querySelectorAll('.card');
+    cards.forEach(function(card) {
+        var cardData = {
+            name: card.querySelector('h2').textContent,
+            sets: card.querySelector('.exercise-range').getAttribute('max')
+        };
+        cardsData.push(cardData);
+    });
+
+    // Pedir al usuario que ingrese el nombre del botón personalizado
+    var buttonName = prompt('Ingrese el nombre del botón personalizado:');
+    if (buttonName) {
+        var customButtons = loadCustomButtons();
+        customButtons.push({ name: buttonName, cardsData: cardsData });
+        saveCustomButtons(customButtons);
+        
+        // Limpiar y volver a generar los botones personalizados
+        var customTemplatesContainer = document.getElementById('customTemplatesContainer');
+        customTemplatesContainer.innerHTML = ''; // Limpiar el contenedor antes de volver a generar los botones
+        customButtons.forEach(function(buttonData, index) {
+            var row = document.createElement('tr');
+
+            // Crear celda para el nombre del botón
+            var nameCell = document.createElement('td');
+            nameCell.textContent = buttonData.name;
+
+            // Crear celda para el botón de eliminación
+            var deleteCell = document.createElement('td');
+            var deleteButton = document.createElement('button');
+            deleteButton.textContent = 'Eliminar';
+            deleteButton.addEventListener('click', function() {
+                // Eliminar el botón personalizado y actualizar el caché
+                customButtons.splice(index, 1);
+                saveCustomButtons(customButtons);
+                // Actualizar la tabla de botones personalizados
+                customTemplatesContainer.innerHTML = '';
+                customButtons.forEach(function(buttonData, index) {
+                    var row = document.createElement('tr');
+
+                    // Crear celda para el nombre del botón
+                    var nameCell = document.createElement('td');
+                    nameCell.textContent = buttonData.name;
+
+                    // Crear celda para el botón de eliminación
+                    var deleteCell = document.createElement('td');
+                    var deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Eliminar';
+                    deleteButton.addEventListener('click', function() {
+                        // Eliminar el botón personalizado y actualizar el caché
+                        customButtons.splice(index, 1);
+                        saveCustomButtons(customButtons);
+                        // Actualizar la tabla de botones personalizados
+                        customTemplatesContainer.innerHTML = '';
+                        customButtons.forEach(function(buttonData, index) {
+                            var row = document.createElement('tr');
+                            var nameCell = document.createElement('td');
+                            var deleteCell = document.createElement('td');
+                            var deleteButton = document.createElement('button');
+                            nameCell.textContent = buttonData.name;
+                            deleteButton.textContent = 'Eliminar';
+                            deleteButton.addEventListener('click', function() {
+                                customButtons.splice(index, 1);
+                                saveCustomButtons(customButtons);
+                                customTemplatesContainer.innerHTML = '';
+                                loadCustomButtons();
+                            });
+                            deleteCell.appendChild(deleteButton);
+                            row.appendChild(nameCell);
+                            row.appendChild(deleteCell);
+                            customTemplatesContainer.appendChild(row);
+                        });
+                    });
+                    deleteCell.appendChild(deleteButton);
+                    row.appendChild(nameCell);
+                    row.appendChild(deleteCell);
+                    customTemplatesContainer.appendChild(row);
+                });
+            });
+            deleteCell.appendChild(deleteButton);
+            row.appendChild(nameCell);
+            row.appendChild(deleteCell);
+            customTemplatesContainer.appendChild(row);
+        });
+    }
+});
+
+
+// Cargar los botones personalizados al cargar la página
+window.addEventListener('load', function() {
+    var customButtons = loadCustomButtons();
+    customButtons.forEach(function(buttonData, index) {
+        var button = document.createElement('button');
+        button.textContent = buttonData.name; // Nombre del botón
+        button.addEventListener('click', function() {
+            // Generar tarjetas para este botón personalizado
+            createCardsFromData(buttonData.cardsData);
+        });
+        document.body.appendChild(button);
+    });
+});
+
+
+// Función para generar tarjetas desde los datos guardados
+function createCardsFromData(cardsData) {
+    cardsData.forEach(function(cardData) {
+        createExerciseCard(cardData.name, cardData.sets);
+    });
+}
+
+// Función para limpiar el caché de botones personalizados
+var clearCacheButton = document.getElementById('clearCacheButton');
+clearCacheButton.addEventListener('click', function() {
+    localStorage.removeItem('customButtons');
+    // Limpiar también los botones del contenedor
+    var customTemplatesContainer = document.getElementById('customTemplatesContainer');
+    customTemplatesContainer.innerHTML = '';
+});
