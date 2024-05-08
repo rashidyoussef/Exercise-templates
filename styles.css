@@ -151,7 +151,7 @@ body {
 
 /* Estilos para cada tarjeta de ejercicio */
 .card {
-    width: 200px; /* Ancho de cada tarjeta */
+    width: 230px; /* Ancho de cada tarjeta */
     padding: 15px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -260,10 +260,24 @@ h2 {
     display:flex;
     flex-wrap: wrap;
 }
-#pushDayButton,#pullDayButton,#legDayButton,#resetAllButton {
-    width:150px;
+#resetAllButton {
+    width:180px;
     height:40px;
     border-radius: 25px;
+    background-color: #000;
+    color:red;
+    font-weight: bold;
+    font-size: 1.1rem;
+}
+
+#saveButton {
+    width:180px;
+    height:40px;
+    border-radius: 25px;
+    background-color:#11b359;
+    color:white;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 #addExerciseButton {
@@ -329,7 +343,7 @@ h2 {
     text-align: center;
 }
 
-#customTemplatesContainer td:first-child {
+#customTemplatesContainer td:first-child,#customTemplatesContainer th:first-child {
     border-right: 1px solid black;
 }
 
@@ -361,4 +375,18 @@ h2 {
 
 .custom-button-table td button:hover {
     background-color: #d32f2f;
+}
+
+.Funcionamiento {
+    display:flex;
+    flex-direction: column;
+    width:80%
+}
+
+.Funcionamiento h1 {
+    text-align: center;
+}
+
+.Funcionamiento p {
+    font-size: 1.2rem;
 }

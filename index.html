@@ -3,32 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Crear Tarjetas de Ejercicio</title>
+    <title>Workout tracker</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="Funcionamiento">
+        <h1>Funcionamiento:</h1>
+        <p>
+            Si es la primera vez que entras, verás unas tarjetas pre-cargadas, este es el calentamiento, necesitas hacerlo para el correcto funcionamiento de la aplicación. <br>
+            1.A. Hacer click en "+1 set" va llenando la barra de progreso. <br> 1.B. Hacer Click en el bote de basura elimina la tarjeta. <br> 1.C. Hacer clic en la flechita que va en círculos resetea el progreso de la tarjeta <br> <br>
+            2.- Hacer clic en "Borrar todo alv" borra todo alv jsjsjs <br> <br>
+            3.- Hacer clic en "Añadir Ejercicio" hará que puedas ingresar tus propios ejercicios (nombre y número de series) <br>
+            <br> 
+            <strong>Nota:</strong> Una vez que hayas dado de alta los ejercicios que realizarás en el día puedes hacer clic en "Guardar Plantilla" 
+            para guardarlo en la tabla que se encuentra en la parte inferior, en donde encontrarás otros posibles entrenamientos/desafíos a realizar
+            <br>
+            <strong>Posdata:</strong> la información se guarda en cache así que hay posibilidad de que se te borre todo alv sin hacer clic en el botón de borrar todo alv
+        </p>
+    </div>
+
     <div id="cardContainer" class="card-container">
         <!-- Las tarjetas se agregarán aquí dinámicamente -->
     </div>
 
     <div class="button-container">
-        <button id="pushDayButton">Push day template</button>
-        <button id="pullDayButton">Pull day template</button>
-        <button id="legDayButton">Leg day template</button>
-        <button id="resetAllButton">Delete everything</button>
-        <button id="saveButton">Save template</button>
+        <button id="resetAllButton">Borrar todo alv</button>
+        <button id="saveButton">Guardar plantilla</button>
     </div>
 
-    <button id="addExerciseButton">Add custom exercise</button> <!-- Botón para añadir un ejercicio personalizado -->
+    <button id="addExerciseButton">Añadir ejercicio</button> <!-- Botón para añadir un ejercicio personalizado -->
 
     <div id="exerciseDialog" class="dialog">
         <div class="dialog-content">
             <span class="close">&times;</span>
-            <h2>Añadir Ejercicio</h2>
+            <h2>Añadir ejercicio</h2>
             <form id="exerciseForm">
-                <label for="exerciseName">Name of the exercise:</label><br>
+                <label for="exerciseName">Nombre del ejercicio</label><br>
                 <input type="text" id="exerciseName" name="exerciseName"><br>
-                <label for="exerciseSets">Number of sets:</label><br>
+                <label for="exerciseSets">Número de series</label><br>
                 <input type="number" id="exerciseSets" name="exerciseSets"><br><br>
                 <input type="submit" value="Agregar">
             </form>
@@ -41,8 +53,7 @@
     <table id="customTemplatesTable">
         <thead>
             <tr>
-                <th>Nombre del Botón</th>
-                <th>Acciones</th>
+                
             </tr>
         </thead>
         <tbody>
@@ -51,8 +62,6 @@
     </table>
 </div>
 <!-- Botón para limpiar el caché de botones personalizados -->
-<button id="clearCacheButton">Limpiar caché de botones personalizados</button>
-
     <template id="card-template">
         <div class="card">
             <h2></h2>
@@ -65,10 +74,7 @@
             <button class="delete-button"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></button> <!-- Nuevo botón de eliminación -->
         </div>
     </template>
-
-   
-
-
+  
     <script src="script.js"></script>
 </body>
 </html>
